@@ -1,6 +1,6 @@
 ## dockselpy
 
-Dockerfile example on how to *"assemble"* together Selenium (with support for both Chrome and Firefox), Python and Xfvb.
+Dockerfile example on how to *"assemble"* together Selenium (with support for Chrome, Firefox and PhantomJS), Python and Xfvb.
 
 ### Information
 
@@ -10,6 +10,7 @@ led to the process of building my own version.
 The image is build with the following dependencies:
 - latest Chrome and chromedriver
 - latest Firefox and geckodriver
+- latest stable PhantomJS webkit (v2.1.1)
 - Selenium
 - Python 3
 - Xvfb and the python wrapper - pyvirtualdisplay
@@ -48,5 +49,4 @@ display.stop()
 
 ```
 
-Detailed examples on how to use Firefox with custom profile and Google Chrome with desired options can be found in the 
-source.
+Detailed examples on how to use Firefox with custom profile, Google Chrome with desired options or PhantomJS can be found in the source.
