@@ -1,16 +1,12 @@
-FROM ubuntu:trusty
+FROM ubuntu:xenial
 
-RUN apt-get update
-
-RUN apt-get install -y python3 python3-pip
-
-RUN apt-get install -y libgconf2-4 libnss3-1d libxss1
-RUN apt-get install -y fonts-liberation libappindicator1 xdg-utils
-
-RUN apt-get install -y software-properties-common
-RUN apt-get install -y curl unzip wget
-
-RUN apt-get install -y xvfb
+RUN apt-get update && apt-get install -y \
+    python3 python3-pip \
+    libgconf2-4 libnss3-1d libxss1 \
+    fonts-liberation libappindicator1 xdg-utils \
+    software-properties-common \
+    curl unzip wget \
+    xvfb
 
 
 # install geckodriver and firefox
@@ -21,8 +17,7 @@ RUN GECKODRIVER_VERSION=`curl https://github.com/mozilla/geckodriver/releases/la
     chmod +x /usr/local/bin/geckodriver
 
 RUN add-apt-repository -y ppa:ubuntu-mozilla-daily/ppa
-RUN apt-get update -y
-RUN apt-get install -y firefox
+RUN apt-get update && apt-get install -y firefox
 
 
 # install chromedriver and google-chrome
