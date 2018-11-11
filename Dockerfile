@@ -41,6 +41,8 @@ RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x
 RUN pip3 install selenium
 RUN pip3 install pyvirtualdisplay
 
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
 
 ENV APP_HOME /usr/src/app
 WORKDIR /$APP_HOME
