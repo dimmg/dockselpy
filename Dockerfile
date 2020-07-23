@@ -25,7 +25,7 @@ RUN FIREFOX_SETUP=firefox-setup.tar.bz2 && \
 
 
 # install chromedriver and google-chrome
-
+RUN apt install libgbm1  -y
 RUN CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE` && \
     wget https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip && \
     unzip chromedriver_linux64.zip -d /usr/bin && \
