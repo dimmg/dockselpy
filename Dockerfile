@@ -1,11 +1,12 @@
 FROM ubuntu:focal
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install --no-install-recommends -y \
     python3 python3-pip \
     fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 \
-    libnspr4 libnss3 lsb-release xdg-utils libxss1 libdbus-glib-1-2 \
+    libnspr4 libnss3 lsb-release xdg-utils libxss1 libdbus-glib-1-2 libgbm1 \
     curl unzip wget \
-    xvfb libgbm1
+    xvfb
 
 
 # install geckodriver and firefox
@@ -25,7 +26,7 @@ RUN FIREFOX_SETUP=firefox-setup.tar.bz2 && \
 
 
 # install chromedriver and google-chrome
-RUN apt install libgbm1  -y
+
 RUN CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE` && \
     wget https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip && \
     unzip chromedriver_linux64.zip -d /usr/bin && \
@@ -47,8 +48,7 @@ RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x
     rm phantomjs-2.1.1-linux-x86_64.tar.bz2
 
 
-RUN pip3 install selenium
-RUN pip3 install pyvirtualdisplay
+RUN pip3 install selenium==3.141.0 pyvirtualdisplay==2.2
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8

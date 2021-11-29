@@ -3,6 +3,7 @@ import logging
 
 from pyvirtualdisplay import Display
 from selenium import webdriver
+from selenium.webdriver import firefox
 
 logging.getLogger().setLevel(logging.INFO)
 
@@ -23,7 +24,7 @@ def chrome_example():
     })
     logging.info('Prepared chrome options..')
 
-    browser = webdriver.Chrome(chrome_options=chrome_options)
+    browser = webdriver.Chrome(options=chrome_options)
     logging.info('Initialized chrome browser..')
 
     browser.get(BASE_URL)
@@ -40,15 +41,19 @@ def firefox_example():
     display.start()
     logging.info('Initialized virtual display..')
 
-    firefox_profile = webdriver.FirefoxProfile()
-    firefox_profile.set_preference('browser.download.folderList', 2)
-    firefox_profile.set_preference('browser.download.manager.showWhenStarting', False)
-    firefox_profile.set_preference('browser.download.dir', os.getcwd())
-    firefox_profile.set_preference('browser.helperApps.neverAsk.saveToDisk', 'text/csv')
+    firefox_options = firefox.options.Options()
+    firefox_options.set_preference('browser.download.folderList', 2)
+    firefox_options.set_preference(
+        'browser.download.manager.showWhenStarting', False
+    )
+    firefox_options.set_preference('browser.download.dir', os.getcwd())
+    firefox_options.set_preference(
+        'browser.helperApps.neverAsk.saveToDisk', 'text/csv'
+    )
 
     logging.info('Prepared firefox profile..')
 
-    browser = webdriver.Firefox(firefox_profile=firefox_profile)
+    browser = webdriver.Firefox(options=firefox_options)
     logging.info('Initialized firefox browser..')
 
     browser.get(BASE_URL)
@@ -75,8 +80,6 @@ def phantomjs_example():
 
     browser.quit()
     display.stop()
-
-
 
 
 if __name__ == '__main__':
