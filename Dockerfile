@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM --platform=linux/amd64 ubuntu:latest
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN echo "===> Installing system dependencies..." && \
